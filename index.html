@@ -383,6 +383,142 @@
     .badge-gray   { background: #f1f3f4; color: #5f6368; border-color: #dadce0; }
 
     /* ====================================================
+       프로젝트 섹션 — 카드 그리드
+       ==================================================== */
+    #projects .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .proj-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .proj-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(26,74,138,0.14);
+    }
+    /* 카드 상단 컬러 배너 */
+    .proj-banner {
+      height: 8px;
+    }
+    .proj-banner-blue   { background: linear-gradient(90deg, #1a4a8a, #4a90d9); }
+    .proj-banner-teal   { background: linear-gradient(90deg, #0d7377, #14a085); }
+    /* 카드 본문 */
+    .proj-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .proj-category {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .proj-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.3;
+    }
+    .proj-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    /* 기능 목록 */
+    .proj-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .proj-features li {
+      font-size: 0.83rem;
+      color: #555;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .proj-features li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-size: 0.7rem;
+      top: 2px;
+    }
+    /* 기술 배지 */
+    .proj-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+    .proj-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.7rem;
+      border-radius: 20px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .proj-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    }
+    .pb-js     { background: #fef9e0; color: #a07800; border: 1px solid #f5e07a; }
+    .pb-html   { background: #fff0e8; color: #c8401a; border: 1px solid #f5c0a0; }
+    .pb-css    { background: #e8f0fe; color: #1a4a8a; border: 1px solid #c5d8f8; }
+    .pb-api    { background: #e6f4ea; color: #1e7e34; border: 1px solid #b7dfbe; }
+    .pb-ls     { background: #f3e8fe; color: #6b2fa0; border: 1px solid #d8b7f5; }
+    /* 버튼 영역 */
+    .proj-actions {
+      display: flex;
+      gap: 0.6rem;
+      padding: 1rem 1.5rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .proj-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.55rem 0.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.18s;
+    }
+    .proj-btn-demo {
+      background: var(--primary);
+      color: var(--white);
+    }
+    .proj-btn-demo:hover { background: var(--primary-lt); }
+    .proj-btn-github {
+      background: var(--light);
+      color: var(--primary);
+      border: 1.5px solid var(--border);
+    }
+    .proj-btn-github:hover { background: var(--border); }
+
+    @media (max-width: 768px) {
+      #projects .proj-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ====================================================
        03. 경력 섹션 — 커리어 타임라인
            (현대자동차, SK건설, 설비회사 등 연대기 순)
        ==================================================== */
@@ -632,6 +768,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#intro">소개</a></li>
       <li><a href="#skills">역량</a></li>
+      <li><a href="#projects">프로젝트</a></li>
       <li><a href="#career">경력</a></li>
       <li><a href="#challenge">도전</a></li>
       <li><a href="#aspiration">포부</a></li>
@@ -816,13 +953,87 @@
 
 
   <!-- ============================================================
+       프로젝트 — 실제 배포된 프로젝트 카드
+       각 카드: 이름, 한 줄 설명, 기술 배지, 주요 기능, 버튼
+       ============================================================ -->
+  <div class="section" id="projects">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">프로젝트</h2>
+    </div>
+
+    <div class="proj-grid">
+
+      <!-- ── 프로젝트 카드 1: 지도 핀 관리 ── -->
+      <div class="proj-card">
+        <div class="proj-banner proj-banner-blue"></div>
+        <div class="proj-body">
+          <div class="proj-category">🗺 지도 · 위치 서비스</div>
+          <h3 class="proj-title">전체 화면 지도 및 핀 관리</h3>
+          <p class="proj-desc">지도를 클릭해 원하는 위치에 핀을 추가하고 메모를 저장할 수 있는 인터랙티브 지도 앱입니다.</p>
+          <ul class="proj-features">
+            <li>지도 클릭으로 핀 추가 및 메모 입력</li>
+            <li>저장된 핀 목록 사이드바 표시</li>
+            <li>핀 개별 삭제 및 전체 초기화</li>
+            <li>서울 중심 위치로 빠른 이동</li>
+          </ul>
+          <div class="proj-badges">
+            <span class="proj-badge pb-html">HTML</span>
+            <span class="proj-badge pb-css">CSS</span>
+            <span class="proj-badge pb-js">JavaScript</span>
+            <span class="proj-badge pb-api">지도 API</span>
+            <span class="proj-badge pb-ls">LocalStorage</span>
+          </div>
+        </div>
+        <div class="proj-actions">
+          <a href="https://luxury-figolla-70b3a5.netlify.app/" target="_blank" class="proj-btn proj-btn-demo">🚀 라이브 데모</a>
+          <a href="https://github.com/yjeng135" target="_blank" class="proj-btn proj-btn-github">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- ── 프로젝트 카드 2: 비밀번호 생성기 ── -->
+      <div class="proj-card">
+        <div class="proj-banner proj-banner-teal"></div>
+        <div class="proj-body">
+          <div class="proj-category">🔐 보안 · 유틸리티</div>
+          <h3 class="proj-title">강력한 비밀번호 생성기</h3>
+          <p class="proj-desc">대문자·소문자·숫자·특수기호 조합을 자유롭게 설정하여 안전한 비밀번호를 즉시 생성하는 웹 앱입니다.</p>
+          <ul class="proj-features">
+            <li>비밀번호 길이 슬라이더 조절 (기본 16자)</li>
+            <li>대문자 / 소문자 / 숫자 / 특수기호 옵션 선택</li>
+            <li>원클릭 복사 기능 (복사 완료 피드백)</li>
+            <li>새 비밀번호 즉시 재생성</li>
+          </ul>
+          <div class="proj-badges">
+            <span class="proj-badge pb-html">HTML</span>
+            <span class="proj-badge pb-css">CSS</span>
+            <span class="proj-badge pb-js">JavaScript</span>
+          </div>
+        </div>
+        <div class="proj-actions">
+          <a href="https://iridescent-wisp-db6269.netlify.app/" target="_blank" class="proj-btn proj-btn-demo">🚀 라이브 데모</a>
+          <a href="https://github.com/yjeng135" target="_blank" class="proj-btn proj-btn-github">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================================
        03. 경력 — 커리어 타임라인
            현대자동차(14년) → SK건설 → 설비회사 → 현재
            날짜 순서대로 타임라인으로 표시
        ============================================================ -->
   <div class="section" id="career">
     <div class="section-head">
-      <span class="section-num">03</span>
+      <span class="section-num">04</span>
       <h2 class="section-title">경력</h2>
     </div>
 
@@ -948,7 +1159,7 @@
        ============================================================ -->
   <div class="section" id="aspiration">
     <div class="section-head">
-      <span class="section-num">05</span>
+      <span class="section-num">06</span>
       <h2 class="section-title">포부</h2>
     </div>
 
