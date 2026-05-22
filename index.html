@@ -336,27 +336,51 @@
     }
 
     /* 툴/소프트웨어 태그 목록 */
-    .tool-tags {
+    /* 카테고리별 배지 그룹 */
+    .tool-section { margin-top: 2rem; }
+    .tool-category {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+    .tool-category-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 80px;
+    }
+    .tool-badges {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-top: 2rem;
     }
-    .tool-tag {
+    /* 배지 기본 스타일 */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
       font-size: 0.82rem;
-      font-weight: 500;
-      padding: 0.35rem 0.9rem;
+      font-weight: 600;
+      padding: 0.38rem 0.95rem;
       border-radius: 20px;
-      border: 1.5px solid var(--primary);
-      color: var(--primary);
-      background: var(--white);
-      /* ✏️ 보유 툴/소프트웨어 태그 */
+      border: 1.5px solid transparent;
+      cursor: default;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
     }
-    .tool-tag.learning {
-      border-color: var(--accent);
-      color: var(--accent);
-      /* 학습 중인 툴은 이 클래스 사용 */
+    .badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      filter: brightness(0.93);
     }
+    /* 카테고리별 색상 */
+    .badge-blue   { background: #e8f0fe; color: #2a5fa8; border-color: #c5d8f8; }
+    .badge-green  { background: #e6f4ea; color: #1e7e34; border-color: #b7dfbe; }
+    .badge-orange { background: #fff3e0; color: #c8873a; border-color: #f5d49a; }
+    .badge-gray   { background: #f1f3f4; color: #5f6368; border-color: #dadce0; }
 
     /* ====================================================
        03. 경력 섹션 — 커리어 타임라인
@@ -746,14 +770,46 @@
       </div>
 
       <!-- 보유 툴/소프트웨어 태그 -->
-      <div class="tool-tags">
-        <!-- ✏️ 보유 툴 태그 — 추가/삭제 가능 -->
-        <span class="tool-tag">MS Word</span>
-        <span class="tool-tag">한글(HWP)</span>
-        <span class="tool-tag learning">엑셀 (취득 예정)</span>
-        <span class="tool-tag learning">파워포인트 (취득 예정)</span>
-        <span class="tool-tag">카카오톡</span>
-        <span class="tool-tag">필담 소통</span>
+      <!-- 카테고리별 배지 그룹 -->
+      <div class="tool-section">
+
+        <!-- 문서 작성 툴 -->
+        <div class="tool-category">
+          <span class="tool-category-label">문서 작업</span>
+          <div class="tool-badges">
+            <span class="badge badge-blue">📝 MS Word</span>
+            <span class="badge badge-blue">📄 한글(HWP)</span>
+          </div>
+        </div>
+
+        <!-- 학습 중인 툴 -->
+        <div class="tool-category">
+          <span class="tool-category-label">취득 예정</span>
+          <div class="tool-badges">
+            <span class="badge badge-green">📊 엑셀</span>
+            <span class="badge badge-green">📑 파워포인트</span>
+          </div>
+        </div>
+
+        <!-- 소통 수단 -->
+        <div class="tool-category">
+          <span class="tool-category-label">소통 방식</span>
+          <div class="tool-badges">
+            <span class="badge badge-orange">💬 카카오톡</span>
+            <span class="badge badge-orange">✍️ 필담</span>
+            <span class="badge badge-orange">✉️ 이메일</span>
+          </div>
+        </div>
+
+        <!-- 기타 -->
+        <div class="tool-category">
+          <span class="tool-category-label">기타</span>
+          <div class="tool-badges">
+            <span class="badge badge-gray">💻 GitHub</span>
+            <span class="badge badge-gray">🌐 인터넷 검색</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
